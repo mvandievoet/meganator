@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %} 
+
+{% block title %} {{ post.title }} - Meganator Blog {% endblock %} 
+
+{% block content %}
+<div class="container blog-post">
+  <h1>{{ post.title }}</h1>
+  <p class="blog-post-date">{{ post.event_date }}</p>
+
+  <div class="blog-post-content">
+    <p>{{ post.content|safe }}</p>
+  </div>
+
+  <!-- Display the gallery with head image first -->
+  <div class="blog-post-gallery mt-4">
+    <h3>Gallery</h3>
+    <div class="row">
+      <!-- Display the head image as the first gallery image -->
+      {% if post.head_image %}
+        <div class="col-md-4 mb-3">
+          <img src="{{ post.head_image.url }}" alt="{{ post.title }}" class="img-fluid gallery-image">
+        </div>
+      {% endif %}
+
+      <!-- Display other images in the gallery -->
+      {% for image in post.blog_images.all %}
+        <div class="col-md-4 mb-3">
+          <img src="{{ image.image.url }}" alt="{{ post.title }}" class="img-fluid gallery-image">
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

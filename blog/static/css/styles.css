@@ -1,0 +1,115 @@
+/* Global Styles */
+body {
+    font-family: 'Lora', serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 .navbar-brand {
+    /* font-family: 'Lora', sans-serif; */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.navbar .navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #555;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #007bff;
+}
+
+/* Updated Gallery Styles */
+.card-img-top {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    aspect-ratio: 4 / 3; /* Enforcing a 4:3 landscape aspect ratio */
+    object-fit: cover; /* Ensuring images fill the container properly */
+    width: 100%; /* Ensuring the image takes up full width */
+    height: auto;
+}
+
+.image-link:hover .card-img-top {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Hover Effect for Overlay */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darkens the image */
+    color: #fff;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Ensure that the overlay doesn't block the link */
+}
+
+.card-title,
+.card-date {
+    margin: 5px 0; /* Adds some space above and below */
+    display: block; /* Ensures each element takes a full line */
+    text-align: center; /* Centers the text */
+}
+
+.image-link:hover .card-overlay {
+    opacity: 1; /* Show overlay on hover */
+}
+
+/* Blog Post View */
+.blog-post {
+    margin-bottom: 30px;
+}
+
+.blog-post h1 {
+    font-size: 36px;
+}
+
+.blog-post-date {
+    color: #888;
+    font-size: 14px;
+}
+
+.blog-post-content {
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.blog-post-images img {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the blog post gallery */
+.blog-post-gallery img {
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post-gallery img:hover {
+    transform: scale(1.05);
+}
