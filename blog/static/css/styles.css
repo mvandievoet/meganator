@@ -1,7 +1,7 @@
 /* Global Styles */
 body {
     font-family: 'Lora', serif;
-    background-color: #f8f9fa;
+    background-color: #fff;
     color: #333;
 }
 
@@ -17,8 +17,9 @@ h1, h2, h3, h4, h5, h6 .navbar-brand {
 
 /* Navbar */
 .navbar {
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #e0e0e0;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
 }
 
 .navbar .navbar-brand {
@@ -26,12 +27,110 @@ h1, h2, h3, h4, h5, h6 .navbar-brand {
 }
 
 .navbar-nav .nav-link {
-    color: #555;
+    color: #000; /* Change text color to black */
+    font-weight: bold; /* Make text bold */
+    font-size: 1.1em ; /* Adjust font size as needed */
 }
 
 .navbar-nav .nav-link:hover {
-    color: #007bff;
+    color: #000; /* Keep the hover color black */
 }
+
+/* Ensure navbar-collapse is hidden when overlay is active */
+#navbarNav.hidden {
+    display: none !important;
+}
+
+/* Navbar logo adjustments */
+.navbar .navbar-logo {
+    max-width: 180px;
+    height: auto;
+}
+
+.navbar-nav .nav-item {
+    margin: 0 10px; /* Adds spacing between nav items */
+}
+
+/* Full-screen overlay adjustments */
+.navbar-overlay {
+    display: none;
+    position: fixed;
+    top: 96px; /* Starts below the navbar */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 96px); /* Leaves navbar visible */
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 1050;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.navbar-overlay.active {
+    display: flex;
+}
+
+/* Center the navbar logo on desktop and left-align on mobile */
+.navbar-brand {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Close button for overlay */
+.overlay-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    z-index: 1051;
+}
+
+.navbar-overlay-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.navbar-overlay-links li {
+    margin: 20px 0;
+}
+
+.navbar-overlay-links a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+}
+
+.navbar-overlay-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: absolute;
+    bottom: 30px;
+}
+
+/* Desktop adjustments */
+@media (min-width: 992px) {
+    .navbar-overlay {
+        display: none !important;
+    }
+
+    .navbar-nav.mx-auto {
+        justify-content: flex-start; /* Ensures menu starts from the left on desktop */
+    }
+
+    .navbar-social-links {
+        display: flex;
+    }
+}
+
 
 /* Updated Gallery Styles */
 .card-img-top {

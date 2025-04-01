@@ -16,59 +16,75 @@
   <body>
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-      <div class="container">
+      <div class="container d-flex justify-content-between align-items-center">
+        
+        <!-- Left-aligned menu toggle button for mobile view -->
         <button
-          class="navbar-toggler"
+          class="navbar-toggler order-1"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'blog:section_view' 'travel' %}">Travel</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'blog:section_view' 'food' %}">Cooking</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'blog:section_view' 'fitness' %}">Fitness</a>
-            </li>
-          </ul>
-          <a class="navbar-brand" href="/">
-            <img src="{% static 'icons/logo.png' %}" alt="Logo" width="180" height="50">
+
+        <!-- Centered logo on desktop, left-aligned on mobile -->
+        <a class="navbar-brand mx-lg-auto order-2" href="/">
+          <img src="{% static 'icons/logo.png' %}" alt="Logo" class="navbar-logo" width="180" height="50">
         </a>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="https://instagram.com/meganjhuang" target="_blank">
-                    <img src="{% static 'icons/instagram.svg' %}" alt="Instagram" width="24" height="24">
-                </a>
+
+        <!-- Right-aligned social links on desktop -->
+        <div class="navbar-social-links d-none d-lg-flex order-3 ml-lg-auto">
+          <a href="https://instagram.com/meganjhuang" target="_blank">
+              <img src="{% static 'icons/instagram.svg' %}" alt="Instagram" width="24" height="24">
+          </a>
+          <a href="https://strava.com/athletes/55247700?oq=megan%20" target="_blank">
+              <img src="{% static 'icons/strava.svg' %}" alt="Strava" width="24" height="24">
+          </a>
+          <a href="mailto:meganhuang09[at]gmail.com" target="_blank"> 
+              <img src="{% static 'icons/email.svg' %}" alt="Email" width="24" height="24">
+          </a>
+        </div>
+
+        <!-- Navbar links in a collapsible menu for desktop -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto mx-lg-0">
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="/">HOME</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://strava.com/athletes/55247700?oq=megan%20" target="_blank">
-                    <img src="{% static 'icons/strava.svg' %}" alt="Strava" width="24" height="24">
-                </a>
+            <li class="nav-item mx-2">
+                <a class="nav-link" href="{% url 'blog:section_view' 'travel' %}">TRAVEL</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="mailto:meganhuang09[at]gmail.com" target="_blank"> 
-                    <img src="{% static 'icons/email.svg' %}" alt="Email" width="24" height="24">
-                </a>
+            <li class="nav-item mx-2">
+                <a class="nav-link" href="{% url 'blog:section_view' 'food' %}">COOKING</a>
+            </li>
+            <li class="nav-item mx-2">
+                <a class="nav-link" href="{% url 'blog:section_view' 'fitness' %}">FITNESS</a>
             </li>
           </ul>
+        </div>
+      </div>
+
+      <!-- Full-screen overlay menu for mobile -->
+      <div class="navbar-overlay">
+        <!-- Close button for the overlay menu -->
+        <button class="overlay-close">&times;</button>
+        <ul class="navbar-overlay-links">
+          <li><a href="/">HOME</a></li>
+          <li><a href="{% url 'blog:section_view' 'travel' %}">TRAVEL</a></li>
+          <li><a href="{% url 'blog:section_view' 'food' %}">COOKING</a></li>
+          <li><a href="{% url 'blog:section_view' 'fitness' %}">FITNESS</a></li>
+        </ul>
+        <div class="navbar-overlay-social">
+          <a href="https://instagram.com/meganjhuang" target="_blank"><img src="{% static 'icons/instagram.svg' %}" alt="Instagram" width="24" height="24"></a>
+          <a href="https://strava.com/athletes/55247700?oq=megan%20" target="_blank"><img src="{% static 'icons/strava.svg' %}" alt="Strava" width="24" height="24"></a>
+          <a href="mailto:meganhuang09[at]gmail.com" target="_blank"><img src="{% static 'icons/email.svg' %}" alt="Email" width="24" height="24"></a>
         </div>
       </div>
     </nav>
 
     <!-- Content block -->
-    <div class="container mt-4">
+    <div class="container mt-4" style="padding-top: 50px;">
       {% block content %}
       <!-- Page-specific content will go here -->
       {% endblock %}
@@ -78,5 +94,19 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Toggle overlay for mobile menu and hide default dropdown
+      $(document).ready(function() {
+        $('.navbar-toggler').on('click', function() {
+          $('.navbar-overlay').toggleClass('active');
+          $('#navbarNav').toggleClass('hidden'); // Hide default dropdown
+        });
+
+        $('.overlay-close').on('click', function() {
+          $('.navbar-overlay').removeClass('active');
+          $('#navbarNav').removeClass('hidden');
+        });
+      });
+    </script>
   </body>
 </html>
